@@ -1,8 +1,7 @@
 package com.example.loginapplication
 
 import android.app.Application
-import com.example.loginapplication.App.Companion.prefs
-import com.example.loginapplication.data.SharedPreferences
+import com.example.loginapplication.data.preferences.SharedPreferences
 
 class App : Application() {
 

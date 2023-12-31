@@ -1,21 +1,21 @@
 package com.example.loginapplication.ui.views.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.loginapplication.App.Companion.prefs
-import com.example.loginapplication.R
-import com.example.loginapplication.data.UserModel
-import com.example.loginapplication.databinding.FragmentLoginBinding
+import com.example.loginapplication.data.entities.UserModel
 import com.example.loginapplication.databinding.FragmentRegisterBinding
-import kotlinx.coroutines.delay
-import okhttp3.Dispatcher
+import com.example.loginapplication.ui.views.viewmodel.RegisterViewModel
 
 class RegisterFragment : Fragment() {
- private lateinit var binding: FragmentRegisterBinding
+    private lateinit var binding: FragmentRegisterBinding
+    private val registerViewModel by viewModels<RegisterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +36,30 @@ class RegisterFragment : Fragment() {
 
         binding.botonregister.setOnClickListener {
 
-            var name: String = "Asedasdasda"
-            var pass: String = "asdasdas"
-            var user1 = UserModel(name, pass)
+            var name: String = "Luca"
+            var pass: String = "1234"
+            //var user1 = UserModel(name, pass)
 
-            prefs.setUser(user1)
+            registerViewModel.setUser(name, pass)
 
-            Toast.makeText(context, prefs.getUser()!!.user, Toast.LENGTH_SHORT).show()
+            // prefs.setUser(user1)
+
+            // Toast.makeText(context, prefs.getUser()!!.user, Toast.LENGTH_SHORT).show()
 
         }
 
+        obserVer()
+
+    }
+
+    private fun obserVer() {
+        registerViewModel.userSaved.observe(viewLifecycleOwner) { userSaved ->
+            if (userSaved != null) {
+                Toast.makeText(context, "El usuario" + userSaved.user + "Se registro correctmente", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Toast.makeText(context, "Hubo un error al registrase", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

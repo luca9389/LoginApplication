@@ -1,9 +1,10 @@
-package com.example.loginapplication.data
+package com.example.loginapplication.data.preferences
 
 import android.content.Context
+import com.example.loginapplication.data.entities.UserModel
 import com.google.gson.Gson
 
-class SharedPreferences(val context:Context) {
+class SharedPreferences(context:Context) {
 
 
     val storage = context.getSharedPreferences(APP, 0)

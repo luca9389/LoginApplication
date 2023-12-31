@@ -4,11 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.loginapplication.R
-import com.example.loginapplication.data.UserModel
 import com.example.loginapplication.databinding.FragmentLoginBinding
 
 
