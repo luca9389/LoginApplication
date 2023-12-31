@@ -39,7 +39,7 @@
             android:layout_gravity="center" />
 
         <EditText
-            android:id="@+id/contraseña"
+            android:id="@+id/password"
             android:hint="@string/password"
             android:layout_width="match_parent"
             android:layout_height="80dp"

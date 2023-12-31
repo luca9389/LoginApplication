@@ -36,15 +36,14 @@ class RegisterFragment : Fragment() {
 
         binding.botonregister.setOnClickListener {
 
-            var name: String = "Luca"
-            var pass: String = "1234"
-            //var user1 = UserModel(name, pass)
+            var name: String = binding.usuario.getText().toString();
+            var pass: String = binding.password.getText().toString()
 
-            registerViewModel.setUser(name, pass)
-
-            // prefs.setUser(user1)
-
-            // Toast.makeText(context, prefs.getUser()!!.user, Toast.LENGTH_SHORT).show()
+            if (name.isNullOrEmpty() && pass.isNullOrEmpty()) {
+                Toast.makeText(context, "El campo esta vacio", Toast.LENGTH_SHORT).show()
+            } else {
+                registerViewModel.setUser(name, pass)
+            }
 
         }
 
@@ -55,11 +54,16 @@ class RegisterFragment : Fragment() {
     private fun obserVer() {
         registerViewModel.userSaved.observe(viewLifecycleOwner) { userSaved ->
             if (userSaved != null) {
-                Toast.makeText(context, "El usuario" + userSaved.user + "Se registro correctmente", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    context,
+                    "El usuario" + userSaved.user + "Se registro correctmente",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             } else {
                 Toast.makeText(context, "Hubo un error al registrase", Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 }
