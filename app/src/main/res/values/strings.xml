@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LoginApplication</string>
+    <string name="welcome">Bienvenidos</string>
+    <string name="register">Registrarse</string>
+    <string name="password">contraseña</string>
+    <string name="user">usuario</string>
+    <string name="login">Iniciar Secion</string>
+</resources>
