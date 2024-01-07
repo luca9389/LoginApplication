@@ -1,38 +1,20 @@
 package com.example.loginapplication.ui.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.loginapplication.data.entities.UserModel
-import com.example.loginapplication.data.repositories.UserRepository
+import com.example.loginapplication.domain.RegisterUseCase
 
 class RegisterViewModel : ViewModel() {
 
     val userSaved: MutableLiveData<UserModel?> get() = _userSaved
     private val _userSaved = MutableLiveData<UserModel?>()
 
-    val repository = UserRepository()
-    //val user: UserModel = UserModel()
+    val useCase : RegisterUseCase = RegisterUseCase()
 
 
     fun setUser(name: String, pass: String) {
-        val lucaUser1: UserModel = UserModel()
-        lucaUser1.user = name
-        lucaUser1.pass = pass
-
-        val getUser = repository.getUser()
-        if (getUser == null  || getUser.user != lucaUser1.user){
-            repository.setUser(lucaUser1)
-            _userSaved.value = getUser
-        }else {
-            _userSaved.value = null
-        }
-
-        //if (getUser != null ){
-        //    _userSaved.value = getUser
-        //} else{
-        //    _userSaved.value = null
-        //}
+        _userSaved.value = useCase.setUser(name, pass)
     }
 
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.loginapplication.databinding.FragmentRegisterBinding
 import com.example.loginapplication.ui.viewmodel.RegisterViewModel
+import com.example.loginapplication.utlis.messageToast
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
@@ -33,11 +34,11 @@ class RegisterFragment : Fragment() {
 
         binding.botonregister.setOnClickListener {
 
-            var name: String = binding.usuario.getText().toString();
-            var pass: String = binding.password.getText().toString()
+            val name: String = binding.usuario.text.toString();
+            val pass: String = binding.password.text.toString()
 
-            if (name.isNullOrEmpty() && pass.isNullOrEmpty()) {
-                Toast.makeText(context, "El campo esta vacio", Toast.LENGTH_SHORT).show()
+            if (name.isEmpty()  || pass.isEmpty()) {
+                requireContext().messageToast("El campo esta vacio")
             } else {
                 registerViewModel.setUser(name, pass)
             }
