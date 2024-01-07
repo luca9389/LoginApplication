@@ -14,7 +14,7 @@ class RegisterViewModel : ViewModel() {
 
 
     fun setUser(name: String, pass: String) {
-        _userSaved.value = useCase.setUser(name, pass)
+        _userSaved.value = useCase.setUser(name, pass)//rerer
     }
 
 
